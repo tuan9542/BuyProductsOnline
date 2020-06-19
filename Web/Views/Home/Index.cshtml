@@ -1,0 +1,74 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    var jsonData = new List<Web.Models.DataDemo>();
+    jsonData.Add(new Web.Models.DataDemo()
+    {
+        url_full = "../assets/imgs/card06-full.jpg",
+        url_25perc = "../assets/imgs/card06-25percent.jpg"
+    });
+    jsonData.Add(new Web.Models.DataDemo()
+    {
+        url_full = "../assets/imgs/card07-full.jpg",
+        url_25perc = "../assets/imgs/card07-25percent.jpg"
+    });
+    jsonData.Add(new Web.Models.DataDemo()
+    {
+        url_full = "../assets/imgs/card08-full.jpg",
+        url_25perc = "../assets/imgs/card08-25percent.jpg"
+    });
+    jsonData.Add(new Web.Models.DataDemo()
+    {
+        url_full = "../assets/imgs/card09-full.jpg",
+        url_25perc = "../assets/imgs/card09-25percent.jpg"
+    });
+    jsonData.Add(new Web.Models.DataDemo()
+    {
+        url_full = "../assets/imgs/card10-full.jpg",
+        url_25perc = "../assets/imgs/card10-25percent.jpg"
+    });
+}
+@section StyleTop{
+    @Styles.Render("~/Home/Index/Style")
+}
+@section ScriptEnd{
+    @Scripts.Render("~/Home/Index/Script")
+}
+@using (Html.BeginForm("GetReportBackToSchoolExcel", "Report", System.Web.Mvc.FormMethod.Post))
+{
+    <section id="detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <!-- Product Images & Alternates -->
+                    <div class="product-images demo-gallery">
+                        <!-- Begin Product Images Slider -->
+                        <div class="main-img-slider">
+                            @{
+                                foreach (var url in jsonData)
+                                {
+                                    <a data-fancybox="gallery" href="@url.url_full"><img src="@url.url_full" class="img-fluid"></a>
+                                }
+                            }
+                        </div>
+                        <!-- End Product Images Slider -->
+                        <!-- Begin product thumb nav -->
+                        <ul class="thumb-nav">
+                            @{
+                                foreach (var url in jsonData)
+                                {
+                                    <li><img src="@url.url_25perc"></li>
+                                }
+                            }
+                        </ul>
+                        <!-- End product thumb nav -->
+                    </div>
+                    <!-- End Product Images & Alternates -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+}
